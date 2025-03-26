@@ -26,3 +26,8 @@ Route::get('confirm', function(){
 Route::get('login',function(){
     return view('login');
 });
+Route::post('log', [AuthController::class, 'login']);
+Route::get('verify', function(){ 
+return view ('verifycode');
+});
+Route::post('verifycode', [AuthController::class, 'verify']);

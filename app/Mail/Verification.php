@@ -11,6 +11,7 @@ use Illuminate\Queue\SerializesModels;
 
 class Verification extends Mailable
 {
+    public $code;
     use Queueable, SerializesModels;
 
     /**
@@ -18,9 +19,9 @@ class Verification extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($code)
     {
-        //
+        $this->code = $code;
     }
 
     /**
@@ -31,7 +32,7 @@ class Verification extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Verification',
+            subject: 'Verifica tu inicio de sesión',
         );
     }
 
@@ -43,7 +44,7 @@ class Verification extends Mailable
     public function content()
     {
         return new Content(
-            view: 'view.name',
+            view: 'mails.verify',
         );
     }
 
